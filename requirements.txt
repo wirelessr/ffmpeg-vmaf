@@ -1,0 +1,5 @@
+meson
+ninja
+cython
+numpy
+face_recognition

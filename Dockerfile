@@ -7,9 +7,12 @@ RUN set -e; \
         apk add --no-cache --virtual .build-deps \
                 mariadb-dev \
         ;
+
+COPY requirements.txt ./
+RUN pip3 install -r requirements.txt
+
 COPY library/vmaf-1.5.3.tar.gz ./
-RUN pip3 install meson ninja cython numpy \
-        && tar -zxvf vmaf-1.5.3.tar.gz && rm vmaf-1.5.3.tar.gz \
+RUN tar -zxvf vmaf-1.5.3.tar.gz && rm vmaf-1.5.3.tar.gz \
         && cd vmaf-1.5.3 \
         && make \
         && make install \
